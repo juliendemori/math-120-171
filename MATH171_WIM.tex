@@ -1,0 +1,156 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+
+
+\title{The Arzela-Ascoli Theorem}
+\author{Julien De Mori}
+\date{\today}	
+						% Activate to display a given date or no date
+\begin{document}
+\maketitle
+
+%Section where I introduce the Theorem and it's importance.
+\section{Introduction}
+Of great interest is our ability to know whether some subset of the space of continuous real valued functions $C(I)$ is compact, since compact spaces have a wide range of desirable properties, as any open covering of the space must have a finite sub-covering. A metric space is compact if every sequence therein has a convergent subsequence. Alternatively, we know that a subset $X$ of $\mathbb{R}^n$ is compact if it is closed and bounded. This a far simpler criterion for compactness of a subset of $\mathbb{R}^n$ than checking that every sequence has a convergent subsequence. The Arzela-Ascoli theorem will similarly provide a compactness criterion for subsets of the space $C(I)$, where $I$ is the closed interval $[0,1]$. In simple terms, the theorem states that any closed, bounded, and equicontinuous subset of $C(I)$ equipped with the $L^\infty$ metric is compact. We will also show that this is equivalent to every sequence in this subset having a convergent subsequence in $C(I)$. Any definitions and prior theorems required will be explained in following sections. The rest of the paper will focus on a rigorous proof of the theorem, followed by examples in which the failure of one of the theorem's propositions results in the conclusion being false.
+
+%Section where I discuss, in a high-level way, how I will approach the proof of the theorem
+\section{Preliminaries}
+
+\subsection{Definitions}
+We will first properly define what it means for a set to be bounded and equicontinuous on $C(I)$. Consider a subset $\Phi$ of the space of continuous functions $C(I)$ from the closed interval $I = [0,1]$.
+%\subsubsection{Definition 1 : \emph{Boundedness on C(I)}}
+\begin{definition}
+We say that $\Phi$ is bounded if there is some $L > 0$ such that $|\phi(x)| \le L$ for all $ x \in I$ and every $\phi \in \Phi$.
+\end{definition}
+
+%\subsubsection{Definition 2: \emph{Equicontinuity on C(I)}}
+\begin{definition}
+We say that $\Phi$ is equicontinuous if for every $\epsilon > 0$, there exists a $\delta > 0$ such that $|\phi(x) - \phi(y)| < \epsilon$ for all $\phi \in \Phi$ whenever $|x - y| < \delta$ and $x,y \in I$.
+\end{definition}
+%\subsubsection{Definition 3: \emph{Total Boundedness}}
+
+\begin{definition}
+A metric space is totally bounded if it can be covered by a finite number of open balls of any radius $\epsilon > 0$.
+\end{definition}
+
+%\subsubsection{Definition 4: \emph{$(C(I), d)$ metric space with $L^\infty$ metric}}
+\begin{definition}
+Recall that the space $C(I)$ is the space of continuous, real-valued functions $f$ on $I = [0,1]$. Then, $(C(I), d)$ is a metric space when equipped with the $L^\infty$ metric $d$, where $d(f,g) = \| f - g \|_\infty = \sup \{ |f(x) - g(x)| : x \in I\}$
+\end{definition}
+
+Effectively, a subset of $C(I)$ is bounded if no function in $\Phi$ exceeds a certain value for any point in $I$, and is equicontinuous if every function in $\Phi$ has the same degree of continuity at every point in $I$. We will later show that if a subset of $C(I)$ satisfies these criteria, then its closure is compact.
+
+\subsection{Useful Results}
+In this section we recall several results that will be helpful in proving our main theorem. 
+\begin{enumerate}
+\item A subset of a metric space is sequentially compact if and only if it is compact. (Bolzano-Weierstrass characterization of compactness)
+\item A metric space is compact if and only if it is complete and totally bounded.
+\item $C(I)$ is a complete metric space.
+\item A closed subset of a complete metric space is complete.
+\item Given a set $X$, $\bar{X}$ is totally bounded if $X$ is totally bounded. 
+\end{enumerate}
+
+\subsection{Approach to the theorem}
+We give a brief high level overview of the approach we will take to proving the theorem. \\
+First we will show that the the subspace $\Phi$ of $C(I)$ will be sequentially compact if and only if the closure of $\Phi$ is compact whenever it is also bounded and equicontinuous. Subsequently, we will show that proving that the closure of $\Phi$ is compact when both hypotheses hold is equivalent to showing that $\Phi$ is totally bounded. To show that $\Phi$ is totally bounded, we will use the given hypotheses to divide $I$ and the range of all the function of $\Phi$ into subregions and show that for any $\epsilon > 0$, the space $\Phi$ can be covered by a finite number of open balls of radius $\epsilon$.
+
+
+\newpage
+
+%Section where I state and prove the Theorem
+\section{The Arzela-Ascoli Theorem}
+%\subsection{Theorem}
+
+\begin{theorem}
+Let $\Phi$ be a subset of the space, $C(I)$ of continuous real-valued functions on $I = [0,1]$ equipped with the $L^\infty$ metric. If $\Phi$ is bounded and equicontinuous, then its closure is compact. Equivalently, every sequence of functions in $\Phi$ has a subsequence that converges in $C(I)$.
+\end{theorem}
+
+%\subsection{Proof}
+\begin{proof}
+We first prove the equivalence of the two statements in the theorem. \\
+\indent
+Consider the closure $\bar{\Phi}$ of some subset $\Phi$ of $C(I)$. Assume first that $\bar{\Phi}$ is compact. By the Bolzano-Weierstrass characterization of a compact space, $\bar{\Phi}$ is sequentially compact, implying that any sequence contained within it contains a subsequence that converges in $\bar{\Phi}$. Since $\Phi \subset \bar{\Phi}$, then any sequence in $\Phi$ is also in its closure, so it must also contain a subsequence that converges in $\bar{\Phi} \subset C(I)$, so when $\bar{\Phi}$ is compact, any sequence in $\Phi$ contains a subsequence that converges in $C(I)$. 
+\\
+\indent
+Now consider the case in which every sequence in $\Phi$ has a subsequence converging in $C(I)$. Consider a sequence of functions $g_n \in \bar{\Phi}$. Since $g_n$ is in the closure of $\Phi$, for any $\epsilon > 0$, we can simply choose a sequence of functions $f_k \in \Phi$ such that $|f_n - g_n| < \epsilon$ for all $n \ge N$, for some $N \in \mathbb{P}$. By our assumption, there exists a subsequence $f_{n_k}$ of $f_k$ that converges to some $f$ in $C(I)$, and by definition of the sequence being in $\Phi$, it must converge in $\bar{\Phi}$. We can choose the subsequence $g_{n_k}$, which must, given that it is arbitrarily close to $f_{n_k}$, converge to the same function $f \in \bar{\Phi}$. Therefore, every sequence in $\bar{\Phi}$ contains a subsequence converging in $\bar{\Phi}$, so that the closure of $\Phi$ is sequentially compact, and therefore compact. The two statements are therefore equivalent.
+\\
+\indent
+We now show that proving the first statement of the Arzela-Ascoli theorem is equivalent to showing that $\Phi$ is totally bounded. By result (3), $C(I)$ is a complete metric space. By result (4), a closed subset of a complete metric space is complete, allowing us to deduce that $\bar{\Phi}$ is complete. Then, by result (2), a metric space is compact if and only if it is complete and totally bounded. Since we know that the closure of $\Phi$ is complete, if we prove that it is totally bounded, given the assumptions of boundedness and equicontinuity, then we will have proven that $\bar{\Phi}$ is compact.
+\\
+\indent
+We proceed to show that $\bar{\Phi}$ is totally bounded, that is, that it can be covered by a finite number of balls of any radius $\epsilon > 0$. Consider an arbitrary $\epsilon > 0$. By the assumption of the boundedness of $\Phi$, we know that there is some $L > 0$, such that $|\phi(x)| < L$ for all $x \in I$. Similarly, by the assumption of its equicontinuity, for every $\epsilon > 0$, there exists some $\delta > 0$ such that $|\phi(x) - \phi(y)| < \epsilon$ whenever $|x - y| < \delta$, for $x,y \in I$. We now divide the interval $I$ into finitely many sub-intervals, each of length less than $\delta$. That is, we choose $n$ points in the interval such that $0 = x_0 < x_1 < x_2 < ... < x_{n-1} < x_n = 1$, such that for $i = \{0,1,2,...,n\}$, $|x_i - x_{i-1}| < \delta$. Similarly, we divide the interval $[-L, L]$ into a finite number of subintervals, each of length less than $\epsilon$. We choose points $-L = y_0 < y_1 < ... < y_{p-1} < y_p = L$, such that for $j = \{0,1,2,..., p\}$, $|y_j - y_{j-1}| < \epsilon$. Therefore, we have divided the rectangle $I \times [-L, L]$ into $np$ smaller sub-rectangles, each of which has width less than $\delta$, and height less than $\epsilon$.
+\\
+\indent
+We will now associate to each $\phi \in \Phi$ a continuous, piecewise linear function, $y = \psi(x)$, whose graph has vertices of the form $(x_k, y_l)$ for some $k \in \{1,...,n\}$ and $l \in \{1,...,p\}$. Consider some function $\phi \in \Phi$. We will pick the vertices of the associated $\psi$ as follows. If $\phi(x_k) = y_l$, that is it passes through one of the vertices, then let $\psi$ pass through the vertex $(x_k, y_l)$. If instead $y_{l-1}<\phi(x_k) < y_{l}$, then one can choose either the vertex $(x_k, y_{l-1})$ or $(x_k, y_l)$. By virtue of the way we picked the vertices, since $|y_{l} - y_{l-1}| < \epsilon$, then for all $k \in \{0,1,...,n\}$, we have that $|\psi(x_k) - \phi(x_k)| < \epsilon$. The piecewise linear function $\psi$ is simply formed by connecting the vertices chosen by straight lines. Therefore, we have associated to each $\phi \in \Phi$ a piecewise linear function $\psi$ whose distance from $\phi$ at every vertex is less than $\epsilon$.
+\\
+\indent
+We now will use the fact that $\Phi$ is equicontinuous to bound $|\psi(x_k) - \psi(x_{k+1})|$. 
+\begin{align}
+|\psi(x_k) - \psi(x_{k+1})| & \le |\psi(x_k) - \phi(x_k)| + |\phi(x_k) - \psi(x_{k+1})| \\
+& \le |\psi(x_k) - \phi(x_k)| + |\phi(x_k) - \phi(x_{k+1})| + |\phi(x_{k+1}) - \psi(x_{k+1})| \\
+& < \epsilon + |\phi(x_k) - \phi(x_{k+1})| + \epsilon \\
+& < 3\epsilon
+\end{align}
+\\
+Note that steps (1) and (2) follow directly from the triangle inequality. Step (3) follows from the way we have defined our $\psi$ functions in relation to a certain $\phi$ function. Note that in the triangle inequality expansion we have chosen the $\phi$ corresponding to the $\psi$ in question. Step (4) follows from the equicontinuity of $\Phi$, since $|\phi(x) - \phi(y)| < \epsilon$ whenever $|x - y| < \delta$, for all $\phi \in \Phi$. Therefore, since $|x_k - x_{k+1}| < \delta$ by the manner in which we divided $I$, then $|\phi(x_k) - \phi(x_{k+1})| < \epsilon$, by which our conclusion follows. Since each $\psi(x)$ is piecewise linear for $x_k < x < x_{k+1}$, then it follows that for any $ x$ in that interval, $|\psi(x_k) - \psi(x)| < 3\epsilon$, from our previous result. Finally, we want to bound $|\phi(x) - \psi(x)|$, for some $x \in I$, and some $x_k$ being the subdivision point nearest $x$.
+\begin{align}
+|\phi(x) - \psi(x)| & \le |\phi(x) - \phi(x_k)| + |\phi(x_k) - \psi(x)| \\
+& \le |\phi(x) - \phi(x_k)| + |\phi(x_k) - \psi(x_{k})| + |\psi(x_{k}) - \psi(x)| \\
+& < \epsilon + \epsilon + |\psi(x_{k}) - \psi(x)| \\
+& < 5 \epsilon
+\end{align}
+\\
+Steps (5) and (6) follow from the triangle inequality and step (7) follows from the way the grid was subdivided, and the way that each $\psi$ corresponding to a $\phi$ was chosen. The last step follows from our previous result. 
+\\
+\\
+\indent
+We have therefore shown that every function $\phi$ has a corresponding function $\psi$ such that $|\phi(x) - \psi(x)| < 5\epsilon$. Therefore, any $\phi$ is contained within the ball of radius $5\epsilon$ centered at the corresponding $\psi$. That is, $\phi \subset B_{5\epsilon} (\psi)$. Therefore, $\bigcup B_{5\epsilon} (\psi) \supset \Phi$. Denote $\Psi$ the set of all $\psi$ whose union contains $\Phi$. We show that $|\Psi|$ is finite, signifying that finitely many balls of radius $5\epsilon$ cover $\Phi$. To ensure that every $\phi \in \Phi$ is associated to a corresponding $\psi$, we require that there be a $\psi$ for every possible combination of vertices for which $\psi$ is continuous and piecewise linear. Therefore, for any $x_k$ for $k \in \{0,1,...n\}$ we can choose $p+1$ vertices. Therefore there will be $\emph{at}$ $\emph{most}$ a total of $(p+1)^{n+1}$ possible piecewise linear, continuous functions $\psi \in \Psi$. Since $p$ and $n$ are both finite, the cardinality of $\Psi$ will always be finite.
+\\
+\indent
+Therefore, we have shown that for any $\epsilon > 0$, we can cover a subset $\Phi$ of $C(I)$ with a finite number of balls of radius $5\epsilon$. Therefore, $\Phi$ is totally bounded, and since the closure of a set is totally bounded whenever the set is totally bounded, then $\bar{\Phi}$ is totally bounded. Therefore, $\bar{\Phi}$ is compact, and we have proven the Arzela-Ascoli Theorem. 
+\end{proof}
+
+%Section where we discuss a few counter-examples of the theorem.
+\section{Counterexamples}
+We proceed to discuss an example of each of the cases in which one of the two assumptions of the Arzela-Ascoli theorem is violated, causing the theorem's conclusion not to hold.
+
+%Case in which the subset is not bounded
+\subsection{$\Phi$ is \emph{not} bounded, but is equicontinuous}
+Consider the set of functions on $I = [0,1]$ defined by $\Phi = \{ \phi_n(x) | \phi_n(x) = n; \hspace{0.1 cm}n \in \mathbb{P} \}$. 
+\\
+\indent
+We first show that this is unbounded. Consider the function $\phi_{n'}(x) = n' \in \Phi$ for some arbitrary $n' \in \mathbb{P}$. This function is bounded above by $C = n'$ and below by $C$. However, we can find a function $\phi_{n' + 1}(x)= n' + 1$ that is bounded above by $C_2 = n' + 1 > n' = C$, implying that $\Phi$ is unbounded. 
+\\
+\indent
+We now show that $\Phi$ is indeed equicontinuous. Consider any $\epsilon > 0$ and any $\phi_n(x) \in \Phi$. Then, choosing $\delta = 1$, for any $x,y \in [0,1]$ such that $|x-y| < 1$, $|\phi_n (x) - \phi_n(y)| = |n - n| = 0 < \epsilon$, so $\Phi$ is equicontinuous.
+\\
+\indent
+We finally proceed to show that $\Phi$ is not compact by showing that it contains a sequence in which every subsequence doesn't converge in $C(I)$. Consider the sequence of functions $\phi_n(x) = n$ for all $n \in \mathbb{P}$, for $x \in [0,1]$. Consider any subsequence $\phi_{n_k}(x) = n_k$ of $\phi_n(x)$. Consider $\epsilon = 1$, then for $n_k \ne n$, $d(\phi_{n_k}, \phi_n) = |n_k - n| >  1$, so the subsequence $\phi_{n_k}$ is not Cauchy, and is therefore not convergent. Therefore no subsequence of $\phi_n(x)$ converges, so $\bar{\Phi}$ is not compact. 
+
+%Case in which the subset is not equicontinuous
+\subsection{$\Phi$ is bounded, but is \emph{not} equicontinuous}
+Now consider the subset of $C(I)$ defined by $\Phi = \{ \phi_n(x) | \phi_n(x) = x^n; \hspace{0.1 cm} n \in \mathbb{P} \}$. 
+\\
+\indent
+We first demonstrate that $\Phi$ is bounded. Consider a function $\phi_n(x)$ in $\Phi$. Firstly, since $x \ge 0$, $\phi_n(x) \ge 0$, so it is bounded below, and since the function $\phi_n (x) = x^n \le 1$ for all $n \in \mathbb{P}$ and $x \in [0,1]$, so $\Phi$ is bounded above and is therefore bounded. 
+\\
+\indent
+We must now show that $\Phi$ is not equicontinuous. Consider $\epsilon = \frac{1}{2}$ and the point $x = 1$. The sequence of functions $\phi_n(x) = x^n$ tends to $0$ for any $0 \le x<1$. Therefore, consider some $y \in [0,1)$. There exists an $N \in \mathbb{P}$ such that $y^N < \frac{1}{2}$. Considering the function $\phi_N(x) \in \Phi$, we have that for any $y$ not equal to $x$ satisfying $|y - x| < \delta$ for an arbitrary $\delta > 0$, $|\phi_N(x) - \phi_N(y)| = |1 -  \phi_N(y)| > |1- \frac{1}{2}| = \frac{1}{2} = \epsilon$, proving that this set $\Phi$ is not equicontinuous. 
+\\
+\indent
+It now suffices to show that, if we consider some sequence of functions $\phi_n(x) = x^n$ in $\Phi$, then all of its subsequences converge pointwise to a discontinuous function, that would therefore not be in $C(I)$. Consider an arbitrary subsequence $\phi_{n_k}(x) = x^{n_k}$ defined on the interval $I = [0,1]$, where $n_{k+1} > n_k$ for all $k \in \mathbb{P}$. For $x = 1$, clearly $\phi_{n_k}(1) = 1$ for all $n_k \in \mathbb{P}$, so that its limit will also be $1$. Now consider the subsequence defined for all $0\le x < 1$. For any $x$ in this range, the function $\phi_n(x) = x^n$ converges to $0$, and therefore for any $0\le x < 1$, any subsequence $\phi_{n_k} (x) = x^{n_k}$ has limit $0$. Therefore, any subsequence of $\phi_n(x) \to \phi(x)$ where $\phi(x) = 0$ for $0 \le x < 1$ and $\phi(x) = 1$ otherwise. This function is discontinuous and is not in $C(I)$, so the space $\Phi$ is not compact as defined. 
+
+\section{Conclusion}
+We have therefore derived sufficient conditions for the closure of a subset of $C(I)$ to be compact that are often much easier to verify than other conditions. As illustrated in the counterexamples, if one of these two conditions doesn't hold, then the closure of the space need not be compact. There are many applications of the Arzela-Ascoli theorem, such as in the theory of solving differential equations.
+\end{document}  
