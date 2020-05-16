@@ -1,2 +1,2 @@
-# math171
-Math 171 assignments
+# Math 171 & 120
+Real analysis and abstract algebra assignments.
